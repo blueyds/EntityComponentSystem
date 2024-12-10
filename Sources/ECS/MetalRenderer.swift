@@ -14,11 +14,14 @@ public protocol MetalRenderer:Renderer{
 	var pixelFormat: MTLPixelFormat { get }
 	var depthPixelFormat: MTLPixelFormat? { get }
 	var rCE: MTLRenderCommandEncoder? { get set }
+	var defaultRenderPipeline: MTLRenderPipelineState? { get }
+	var defaultDepthStencilState: MTLDepthStencilState? { get }
 	var vertexBufferIndex: Int { get }
 	var modelMatrixIndex: Int { get }
 	var viewMatrixIndex: Int { get }
 	var projectionMatrixIndex: Int { get }
 	func makeLibrary()->MTLLibrary?
+	func set(renderCommandEncoder : MTLRenderCommandEncoder?)
 
 }
 extension MetalRenderer{
@@ -27,24 +30,39 @@ extension MetalRenderer{
 	public var modelMatrixIndex: Int { 1 }
 	public var viewMatrixIndex: Int { 2 }
 	public var projectionMatrixIndex: Int { 3 }
-
+	
 	public func pushDebug(_ named: String) {
 		rCE!.pushDebugGroup(named)
 	}
+	
 	public func popDebug() {
 		rCE!.popDebugGroup()
 	}
+	
 	public func makeLibrary()->MTLLibrary?{
 		device?.makeDefaultLibrary()
 	}
+	
+	func set(renderCommandEncoder : MTLRenderCommandEncoder?){
+		rCE = renderCommandEncoder
+		if defaultRenderPipeline != nil {
+			rCE?.setRenderPipelineState(defaultRenderPipeline!)
+	}
+		if depthStencilState != nil{
+			rCE?.setDepthStencilState(depthStencilState!)
+		}
+	}
+	
 	public func setModel(matrix: Matrix) {
 		var modelMatrix = matrix
 		rCE!.setVertexBytes(&modelMatrix, length: Matrix.stride(), index: modelMatrixIndex)
 	}
+	
 	public func setView(matrix: SwiftMatrix.Matrix) {
 		var viewMatrix = matrix
 		rCE!.setVertexBytes(&viewMatrix, length: Matrix.stride(), index: viewMatrixIndex)
 	}
+	
 	public func setProjection(matrix: SwiftMatrix.Matrix) {
 		var projectionMatrix = matrix
 		rCE!.setVertexBytes(&projectionMatrix, length: Matrix.stride(), index: projectionMatrixIndex)
@@ -78,6 +96,7 @@ extension MetalRenderer{
 		}
 		return result
 	}
+	
 	func createDepthStencilState(compareFn: MTLCompareFunction)->MTLDepthStencilState?{
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
 		depthStencilDescriptor.isDepthWriteEnabled = true
