@@ -12,7 +12,7 @@ import SwiftMatrix
 public protocol SceneProtocol: AnyObject{
 	associatedtype R: Renderer
 	var manager: Manager { get }
-	var camera: Camera? { get }
+	var camera: (any Camera)? { get }
 }
 
 extension SceneProtocol{

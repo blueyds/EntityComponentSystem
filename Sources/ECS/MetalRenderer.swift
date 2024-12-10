@@ -47,8 +47,13 @@ extension MetalRenderer{
 		rCE!.setVertexBytes(&projectionMatrix, length: Matrix.stride(), index: projectionMatrixIndex)
 	}
 	
+	public func setVertex(_ verticeBytes: [V]){
+		var vertices = verticeBytes
+		rce!.setVertexBytes(&vertices, length: V.stride(of: vertices.count), index: vertexBufferIndex)
+	}
+	
 	public func drawPrimitives(count: Int) {
-		rCE!.drawPrimitives(type: .triangle, vertexStart: 9, vertexCount: count)
+		rCE!.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: count)
 	}
 
 	public func createRenderPipeline(vertex: String, fragment: String)->MTLRenderPipelineState?{

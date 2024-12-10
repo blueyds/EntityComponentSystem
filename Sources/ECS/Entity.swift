@@ -13,7 +13,7 @@ public class Entity:Identifiable{
 		}
 	}
 	
-	public func draw(renderer: Renderer){
+	public func draw(renderer: any Renderer){
 		components.forEach{_, component in
 			component.draw(renderer: renderer)    
 		}

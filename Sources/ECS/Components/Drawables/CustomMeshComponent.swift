@@ -20,7 +20,7 @@ extension CustomMeshComponent {
 	}
 	public func draw(renderer: R){
 		
-		renderer.pushDebug(named: "TypeID \(Self.typeID)")
+		renderer.pushDebug("TypeID \(Self.typeID)")
 		renderer.setModel(matrix: transform?.modelMatrix  ?? matrix_identity_float4x4)
 		renderer.setVertex(vertices: vertices)
 		renderer.drawPrimitives(count: vertices.count)

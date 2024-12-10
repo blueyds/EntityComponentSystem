@@ -5,7 +5,8 @@ public protocol Renderer{
 	func popDebug()
 	func setModel(matrix: Matrix)
 	func setView(matrix: Matrix)
-	func setVertex(_ : V)
+	func setProjection(matrix: Matrix)
+	func setVertex(_ : [V])
 	func drawPrimitives(count: Int)
 }
 

@@ -10,10 +10,9 @@ public class Manager{
 	
 	public func update(){
 		entities.forEach(){ $0.update()}
-		entities.forEach(){ $0.preDraw()}
 	}
 	
-	public func draw(renderer: Renderer){
+	public func draw(renderer: any Renderer){
 		entities.forEach(){ $0.draw(renderer: renderer)}
 	}
 	

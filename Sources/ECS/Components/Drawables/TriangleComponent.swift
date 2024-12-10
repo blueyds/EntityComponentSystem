@@ -7,7 +7,9 @@
 
 import Foundation
 
-public protocol CustomTriangleComponent: CustomMeshComponent {}
+public protocol CustomTriangleComponent: CustomMeshComponent {
+	var color: SIMD4<Float> { get }
+}
 
 extension CustomTriangleComponent{
 	public func buildVertices(){

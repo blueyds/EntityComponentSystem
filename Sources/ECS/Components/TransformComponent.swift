@@ -1,6 +1,10 @@
 import simd
-public protocol TransformComponent: Component{
-	var transforms: TransformData { get set}
+public class TransformComponent: Component{
+	var entity: Entity? = nil
+	static public var typeID: Int = Manager.GetNewComponentTypeID()
+	var transforms: TransformData
+	var modelMatrix: Matrix { transforms?.modelMatrix ?? .identity}
+
 }
 
 
