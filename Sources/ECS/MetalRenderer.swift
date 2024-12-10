@@ -48,7 +48,7 @@ extension MetalRenderer{
 		if defaultRenderPipeline != nil {
 			rCE?.setRenderPipelineState(defaultRenderPipeline!)
 	}
-		if depthStencilState != nil{
+		if defaultDepthStencilState != nil{
 			rCE?.setDepthStencilState(depthStencilState!)
 		}
 	}
@@ -77,11 +77,11 @@ extension MetalRenderer{
 		rCE!.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: count)
 	}
 
-	public func createRenderPipeline(vertex: String, fragment: String)->MTLRenderPipelineState?{
+	public func createRenderPipeline(vertexFn: String, fragmentFn: String)->MTLRenderPipelineState?{
 		var result: MTLRenderPipelineState? = nil
 		let library = makeLibrary()
-		let vertexFunction = library!.makeFunction(name: vertex)
-		let fragmentFunction = library!.makeFunction(name: fragment)
+		let vertexFunction = library!.makeFunction(name: vertexFn)
+		let fragmentFunction = library!.makeFunction(name: fragmentFn)
 		let renderPipelineDescriptore = MTLRenderPipelineDescriptor()
 		renderPipelineDescriptore.colorAttachments[0].pixelFormat = pixelFormat
 		if depthPixelFormat != nil{

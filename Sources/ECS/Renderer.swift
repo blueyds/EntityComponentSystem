@@ -1,5 +1,5 @@
 import SwiftMatrix
-public protocol Renderer{
+public protocol Renderer: AnyObject{
 	associatedtype V: VertexProtocol
 	func pushDebug(_ msg: String)
 	func popDebug()
