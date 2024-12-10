@@ -10,8 +10,8 @@ let package = Package(
 		.library( name: "ECS", targets: ["ECS"])
 	],
 	dependencies:[
-		.package(url: "https://github.com/blueyds/Sizeable", from:"1.0"),  
-		.package(url: "https://github.com/blueyds/SwiftMatrix", from: "1.0")
+		.package(url: "https://github.com/blueyds/Sizeable", from: "1.0.0"),  
+		.package(url: "https://github.com/blueyds/SwiftMatrix", from: "1.0.0")
 	],
 	targets: [
 	// Targets are the basic building blocks of a package, defining a module or a test suite.
