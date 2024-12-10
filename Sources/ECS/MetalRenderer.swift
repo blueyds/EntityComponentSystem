@@ -49,7 +49,7 @@ extension MetalRenderer{
 			rCE?.setRenderPipelineState(defaultRenderPipeline!)
 	}
 		if defaultDepthStencilState != nil{
-			rCE?.setDepthStencilState(depthStencilState!)
+			rCE?.setDepthStencilState(defaultDepthStencilState!)
 		}
 	}
 	
