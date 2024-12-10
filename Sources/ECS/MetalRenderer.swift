@@ -97,7 +97,7 @@ extension MetalRenderer{
 		return result
 	}
 	
-	func createDepthStencilState(compareFn: MTLCompareFunction)->MTLDepthStencilState?{
+	public func createDepthStencilState(compareFn: MTLCompareFunction)->MTLDepthStencilState?{
 		let depthStencilDescriptor = MTLDepthStencilDescriptor()
 		depthStencilDescriptor.isDepthWriteEnabled = true
 		depthStencilDescriptor.depthCompareFunction = compareFn
