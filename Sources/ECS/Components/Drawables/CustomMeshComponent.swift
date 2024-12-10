@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftMatrix
+
 public protocol CustomMeshComponent: Component {
 	associatedtype R: Renderer
-	var vertices: [R.V] { get }
+	var vertices: [R.V] { get set}
 	var transform: TransformComponent? { get set }
 	func buildVertices()
 }
@@ -21,8 +23,8 @@ extension CustomMeshComponent {
 	public func draw(renderer: R){
 		
 		renderer.pushDebug("TypeID \(Self.typeID)")
-		renderer.setModel(matrix: transform?.modelMatrix  ?? matrix_identity_float4x4)
-		renderer.setVertex(vertices: vertices)
+		renderer.setModel(matrix: transform?.modelMatrix  ?? .identity)
+		renderer.setVertex(vertices)
 		renderer.drawPrimitives(count: vertices.count)
 		renderer.popDebug()
 	}

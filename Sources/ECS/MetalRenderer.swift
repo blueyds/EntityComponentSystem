@@ -49,7 +49,7 @@ extension MetalRenderer{
 	
 	public func setVertex(_ verticeBytes: [V]){
 		var vertices = verticeBytes
-		rce!.setVertexBytes(&vertices, length: V.stride(of: vertices.count), index: vertexBufferIndex)
+		rCE!.setVertexBytes(&vertices, length: V.stride(of: vertices.count), index: vertexBufferIndex)
 	}
 	
 	public func drawPrimitives(count: Int) {
