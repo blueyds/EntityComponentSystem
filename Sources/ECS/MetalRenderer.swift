@@ -23,13 +23,16 @@ public protocol MetalRenderer:Renderer{
 }
 extension MetalRenderer{
 
+	public var vertexBufferIndex: Int { 0 }
+	public var modelMatrixIndex: Int { 1 }
+	public var viewMatrixIndex: Int { 2 }
+	public var projectionMatrixIndex: Int { 3 }
 
-
-	public func pushDebug(named: String) {
+	public func pushDebug(_ named: String) {
 		rCE!.pushDebugGroup(named)
 	}
 	public func popDebug() {
-		rCE?.popDebugGroup()
+		rCE!.popDebugGroup()
 	}
 	public func makeLibrary()->MTLLibrary?{
 		device?.makeDefaultLibrary()
