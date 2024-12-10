@@ -11,8 +11,8 @@ import SwiftMatrix
 
 public protocol MetalRenderer:Renderer{
 	var device: MTLDevice? { get } // required
-	//var pixelFormat: MTLPixelFormat { get } //required
-	// var depthPixelFormat: MTLPixelFormat? { get } 
+	var pixelFormat: MTLPixelFormat { get } //required
+	var depthPixelFormat: MTLPixelFormat? { get } // required
 	var rCE: MTLRenderCommandEncoder? { get set } // required
 	var defaultRenderPipeline: MTLRenderPipelineState? { get } // required
 	var defaultDepthStencilState: MTLDepthStencilState? { get } // required 
