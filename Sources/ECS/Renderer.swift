@@ -1,7 +1,7 @@
 import SwiftMatrix
 public protocol Renderer: AnyObject{
 	associatedtype V: VertexProtocol
-	func pushDebug(_ msg: String)
+	func pushDebug(_ : String)
 	func popDebug()
 	func setModel(matrix: Matrix)
 	func setView(matrix: Matrix)

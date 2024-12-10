@@ -10,20 +10,21 @@ import MetalKit
 import SwiftMatrix
 
 public protocol MetalRenderer:Renderer{
-	var device: (any MTLDevice)? { get }
-	var pixelFormat: MTLPixelFormat { get }
-	var depthPixelFormat: MTLPixelFormat? { get }
-	var rCE: MTLRenderCommandEncoder? { get set }
-	var defaultRenderPipeline: MTLRenderPipelineState? { get }
-	var defaultDepthStencilState: MTLDepthStencilState? { get }
-	var vertexBufferIndex: Int { get }
-	var modelMatrixIndex: Int { get }
-	var viewMatrixIndex: Int { get }
-	var projectionMatrixIndex: Int { get }
-	func makeLibrary()->MTLLibrary?
-	func set(renderCommandEncoder : MTLRenderCommandEncoder?)
-
+	var device: MTLDevice? { get } // required
+	//var pixelFormat: MTLPixelFormat { get } //required
+	// var depthPixelFormat: MTLPixelFormat? { get } 
+	var rCE: MTLRenderCommandEncoder? { get set } // required
+	var defaultRenderPipeline: MTLRenderPipelineState? { get } // required
+	var defaultDepthStencilState: MTLDepthStencilState? { get } // required 
+	var vertexBufferIndex: Int { get } // default implement = 0
+	var modelMatrixIndex: Int { get } // default implemenkkt = 1
+	var viewMatrixIndex: Int { get } // default implement = 2
+	var projectionMatrixIndex: Int { get } // default implement = 3
+	func makeLibrary()->MTLLibrary? // default implement provided
+	func set(renderCommandEncoder : MTLRenderCommandEncoder?) // defult implement provided
 }
+
+// defualt implementations of some MetalRenderer requirements
 extension MetalRenderer{
 
 	public var vertexBufferIndex: Int { 0 }
@@ -31,13 +32,6 @@ extension MetalRenderer{
 	public var viewMatrixIndex: Int { 2 }
 	public var projectionMatrixIndex: Int { 3 }
 	
-	public func pushDebug(_ named: String) {
-		rCE!.pushDebugGroup(named)
-	}
-	
-	public func popDebug() {
-		rCE!.popDebugGroup()
-	}
 	
 	public func makeLibrary()->MTLLibrary?{
 		device?.makeDefaultLibrary()
@@ -52,6 +46,18 @@ extension MetalRenderer{
 			rCE?.setDepthStencilState(defaultDepthStencilState!)
 		}
 	}
+}
+
+// default implementations of Renderer Protocol
+extension MetalRenderer{
+	public func pushDebug(_ named: String) {
+		rCE!.pushDebugGroup(named)
+	}
+	
+	public func popDebug() {
+		rCE!.popDebugGroup()
+	}
+	
 	
 	public func setModel(matrix: Matrix) {
 		var modelMatrix = matrix
