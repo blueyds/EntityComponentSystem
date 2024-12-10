@@ -43,7 +43,7 @@ extension MetalRenderer{
 		device?.makeDefaultLibrary()
 	}
 	
-	func set(renderCommandEncoder : MTLRenderCommandEncoder?){
+	public func set(renderCommandEncoder : MTLRenderCommandEncoder?){
 		rCE = renderCommandEncoder
 		if defaultRenderPipeline != nil {
 			rCE?.setRenderPipelineState(defaultRenderPipeline!)
