@@ -12,8 +12,6 @@ public class CustomTriangleComponent: CustomMeshComponent {
 
 	public var vertices: [Vertex] = []
 
-	public var transform: TransformComponent? = nil
-
 	public var entity: Entity? = nil
 
 	public static var typeID: Int = Manager.getNewComponentTypeID()

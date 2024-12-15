@@ -14,8 +14,6 @@ extension Camera{
 
 		public static var typeID: Int = Manager.getNewComponentTypeID()
 		
-		public var transform: TransformComponent? = nil
-
 		public var projectionScale: SIMD3<Float>
 
 		public init(scaledBy: SIMD3<Float>){

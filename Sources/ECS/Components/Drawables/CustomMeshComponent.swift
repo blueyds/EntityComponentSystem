@@ -11,17 +11,16 @@ import SwiftMatrix
 public protocol CustomMeshComponent: Component {
 
 	var vertices: [Vertex] { get set}
-	var transform: TransformComponent? { get set }
+	//var transform: TransformComponent? { get set }
 	func buildVertices()
 }
 extension CustomMeshComponent {
 	public func setup() {
-		transform = entity?.get()
 		buildVertices()
 	}
 	public func draw(renderer: any Renderer){
-
 		renderer.pushDebug("TypeID \(Self.typeID)")
+		let transform: TransformComponent? = entity?.get()
 		renderer.setModel(matrix: transform?.modelMatrix  ?? .identity)
 		renderer.setVertex(vertices)
 		renderer.drawPrimitives(count: vertices.count)

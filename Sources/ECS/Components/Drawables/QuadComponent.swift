@@ -5,8 +5,6 @@ import simd
 public class CustomQuadComponent: CustomMeshComponent{
 	public var vertices: [Vertex] = []
 	
-	public var transform: TransformComponent? = nil
-
 	public var entity: Entity? = nil
 
 	public let color: SIMD4<Float>
