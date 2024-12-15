@@ -9,6 +9,7 @@ import Foundation
 import SwiftMatrix
 public enum Camera{
 	public protocol CameraProtocol: Component{
+		var transform: TransformComponent? { get set }
 		var viewMatrix: Matrix { get }
 		var projectionMatrix: Matrix { get }
 	}
@@ -18,6 +19,13 @@ public enum Camera{
 
 }
 extension Camera.CameraProtocol{
-	public var viewMatrix: Matrix { .identity }
+	public var viewMatrix: Matrix {
+		transform?.transforms.viewMatrix ?? .identity
+	}
 	public var projectionMatrix: Matrix { .identity }
+	
+	public func setup(){
+		transform = entity?.getComponent()
+	}
+
 }

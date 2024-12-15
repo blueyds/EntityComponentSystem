@@ -13,13 +13,16 @@ extension Camera{
 		public var entity: Entity? = nil
 
 		public static var typeID: Int = Manager.getNewComponentTypeID()
+		
+		public var transform: TransformComponent? = nil
 
 		public var projectionScale: SIMD3<Float>
 
 		public init(scaledBy: SIMD3<Float>){
 			self.projectionScale = scaledBy
 		}
-
+		
+		
 		public var projectionMatrix: Matrix{
 			var result: Matrix = .identity
 			result.scale(projectionScale)
