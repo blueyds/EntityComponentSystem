@@ -10,7 +10,7 @@ import Foundation
 import SwiftMatrix
 
 public protocol SceneProtocol: AnyObject{
-	var renderer: any Renderer { get }
+	var renderer: some Renderer { get }
 	var manager: Manager { get }
 	var camera: (any Camera.CameraProtocol)? { get }
 }
