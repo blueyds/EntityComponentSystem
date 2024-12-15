@@ -26,7 +26,7 @@ public class Manager{
 	}
 	
 	public func addNewEntity()->Entity{
-		let e: Entity = Entity()
+		let e: Entity = Entity(manager: self)
 		entities.append(e)
 		return e
 	}

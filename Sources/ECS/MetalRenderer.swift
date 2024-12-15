@@ -74,9 +74,9 @@ extension MetalRenderer{
 		rCE!.setVertexBytes(&projectionMatrix, length: Matrix.stride(), index: projectionMatrixIndex)
 	}
 	
-	public func setVertex(_ verticeBytes: [V]){
+	public func setVertex(_ verticeBytes: [Vertex]){
 		var vertices = verticeBytes
-		rCE!.setVertexBytes(&vertices, length: V.stride(of: vertices.count), index: vertexBufferIndex)
+		rCE!.setVertexBytes(&vertices, length: Vertex.stride(of: vertices.count), index: vertexBufferIndex)
 	}
 	
 	public func drawPrimitives(count: Int) {

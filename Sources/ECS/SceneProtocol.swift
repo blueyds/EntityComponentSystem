@@ -10,13 +10,13 @@ import Foundation
 import SwiftMatrix
 
 public protocol SceneProtocol: AnyObject{
-	associatedtype R: Renderer
+	var renderer: any Renderer { get }
 	var manager: Manager { get }
-	var camera: (any Camera)? { get }
+	var camera: (any Camera.CameraProtocol)? { get }
 }
 
 extension SceneProtocol{
-	public func draw(using renderer: R){
+	public func draw(){
 		renderer.pushDebug("SCENE")
 		renderer.setView(matrix: camera?.viewMatrix ?? Matrix.identity)
 		renderer.setProjection(matrix: camera?.projectionMatrix ?? Matrix.identity)

@@ -7,8 +7,9 @@
 
 import Foundation
 import simd
+import Sizeable
 
-public struct VertexPCT:VertexProtocol{
+public struct Vertex{
 	public let position: SIMD3<Float>
 	public let color: SIMD4<Float>
 	public let texCoord: SIMD2<Float>
@@ -24,3 +25,5 @@ public struct VertexPCT:VertexProtocol{
 		texCoord = .zero
 	}
 }
+
+extension Vertex: sizeable{ }
