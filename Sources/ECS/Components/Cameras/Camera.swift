@@ -25,7 +25,7 @@ extension Camera.CameraProtocol{
 	public var projectionMatrix: Matrix { .identity }
 	
 	public func setup(){
-		transform = entity?.getComponent()
+		transform = entity?.get()
 	}
 
 }
