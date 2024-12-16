@@ -31,16 +31,19 @@ public class Entity:Identifiable{
 		return component
 	}
 	
-	public func remove<T: Component>(componentOfType: T.Type){
+	public func removeComponent<T: Component>(ofType: T.Type){
 		components.removeValue(forKey: T.typeID)
 	}
 	
-	public func has<T: Component>(componentOfType: T.Type) -> Bool{
+	public func hasComponent<T: Component>(ofType: T.Type) -> Bool{
 		if components[T.typeID] != nil { return true}
 		else {return false}
 	}
 	
-	public func get<T:Component>()->T?{
+	public func getComponent<T:Component>()->T?{
+		components[T.typeID] as? T
+	}
+	public func getComponent<T:Component>(ofType: T.Type)->T?{
 		components[T.typeID] as? T
 	}
 }

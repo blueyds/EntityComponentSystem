@@ -20,7 +20,7 @@ extension CustomMeshComponent {
 	}
 	public func draw(renderer: any Renderer){
 		renderer.pushDebug("TypeID \(Self.typeID)")
-		let transform: TransformComponent? = entity?.get()
+		let transform: TransformComponent? = entity?.getComponent()
 		renderer.setModel(matrix: transform?.modelMatrix  ?? .identity)
 		renderer.setVertex(vertices)
 		renderer.drawPrimitives(count: vertices.count)
