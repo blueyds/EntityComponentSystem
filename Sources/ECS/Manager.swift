@@ -30,4 +30,7 @@ public class Manager{
 		entities.append(e)
 		return e
 	}
+	public func forEach(action: (Entity)->Void){
+		entities.forEach(action)
+	}
 }
