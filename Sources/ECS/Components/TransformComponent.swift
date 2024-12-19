@@ -8,10 +8,6 @@ public class TransformComponent: Component{
 	public var rotation: SIMD3<Float> = .zero
 	public var scale: SIMD3<Float> = .one
 	
-	public var velocity: SIMD3<Float> = .zero
-	
-	public var speed: Float = 0
-	
 	
 	public init(){}
 	
@@ -29,12 +25,6 @@ public class TransformComponent: Component{
 		self.scale = scale
 	}
 
-}
-// update extenstions
-extension TransformComponent{
-	public func update(){
-		position += velocity * speed
-	}
 }
 
 // common matrices
