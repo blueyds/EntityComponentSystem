@@ -49,6 +49,6 @@ public class Entity:Identifiable{
 	public func forComponent<T:Component>(ofType: T.Type, _ action: (T)->T){
         guard let c:T = getComponent() else {  return }
         let result = action(c)
-        entities.updateValue(result, forKey: T.typeID)
+        components.updateValue(result, forKey: T.typeID)
     }
 }
