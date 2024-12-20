@@ -24,6 +24,9 @@ public class Manager{
 	public func remove(entity: Entity){
 		entities.removeAll(where: {$0.id == entity.id})
 	}
+	public func getEntityWith(id: Int)->Entity?{
+		entities.first(where: {$0.id == id})
+	}
 	
 	public func addNewEntity()->Entity{
 		let e: Entity = Entity(manager: self)
