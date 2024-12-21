@@ -32,7 +32,7 @@ public class Entity:Identifiable{
 	}
 	
 	public func removeComponent<T: Component>(ofType: T.Type){
-		getComponent(ofType: T)?.destroy()
+		getComponent(ofType: T.self)?.destroy()
 		components.removeValue(forKey: T.typeID)
 	}
 	
