@@ -19,7 +19,9 @@ public class Manager{
 		entities.forEach(){ $0.draw(renderer: renderer)}
 	}
 	
-	public func refresh(){}
+	public func refresh(){
+		entities.removeAll(where: { $0.isActive == false })
+	}
 	
 	public func remove(entity: Entity){
 		entities.removeAll(where: {$0.id == entity.id})
