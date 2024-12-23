@@ -1,8 +1,8 @@
 public class CollisionComponent: Component{
     public var entity: Entity? = nil
-    var col: CollisionRect = CollisionRect()
-    let tag: String
-    let offset: SIMD2<Float>
+    public var col: CollisionRect = CollisionRect()
+    public let tag: String
+    public var offset: SIMD2<Float>
     static public var typeID: Int = Manager.getNewComponentTypeID()
     public init(tag: String, offset: SIMD2<Float> = .zero, bounds: SIMD2<Float> = .one){
         self.tag = tag

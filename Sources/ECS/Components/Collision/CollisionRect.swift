@@ -1,12 +1,12 @@
 public struct CollisionRect{
-    var x: Float = .zero
-    var y: Float = .zero
-    var width: Float = .zero
-    var height: Float = .zero
-    var widthExtant: Float {
+    public var x: Float = .zero
+    public var y: Float = .zero
+    public var width: Float = .zero
+    public var height: Float = .zero
+    public var widthExtant: Float {
         x + width
     }
-    var heightExtant: Float {
+    public var heightExtant: Float {
         y + height
     }
 }
