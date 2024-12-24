@@ -4,7 +4,7 @@ extension Manager{
 		var result: [CollisionComponent] = []
 		guard let colA = entity.getComponent(ofType: CollisionComponent.self) else { return result }
 		self.forEach(){
-			if let colB = entityB.getComponent(ofType: CollisionComponent.self),
+			if let colB = $0.getComponent(ofType: CollisionComponent.self),
 				testFn(colA, colB){
 				if colA.id != colB.id{
 					result.append(colB)
