@@ -6,7 +6,7 @@ extension Manager{
 		self.forEach(){
 			if let colB = $0.getComponent(ofType: CollisionComponent.self),
 				testFn(colA, colB){
-				if colA.id != colB.id{
+				if colA?.entity?.id != colB?.entity?.id{
 					result.append(colB)
 				}
 			}
