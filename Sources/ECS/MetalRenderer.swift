@@ -109,4 +109,5 @@ extension MetalRenderer{
 		depthStencilDescriptor.depthCompareFunction = compareFn
 		return device?.makeDepthStencilState(descriptor: depthStencilDescriptor)
 	}
+	public func setTexture(id: Int){}
 }

@@ -8,5 +8,6 @@ public protocol Renderer: AnyObject{
 	func setProjection(matrix: Matrix)
 	func setVertex(_ : [Vertex])
 	func drawPrimitives(count: Int)
+	func setTexture(id: Int)
 }
 
