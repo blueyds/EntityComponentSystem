@@ -15,11 +15,11 @@ public struct Material{
 		set{
 			
 			if newValue != nil{
-				_color = newValue
-				_useMaterialColor = .isTrue
-				_useTexture = .isFalse
+				_color = newValue!
+				_options.x = .isTrue
+				_options.y = .isFalse
 			} else { 
-				_useMaterialColor = .isFalse
+				_options.x = .isFalse
 			}
 		}
 	}
@@ -37,8 +37,8 @@ public struct Material{
 	public var useTexture: Bool {
 		get { _useTexture == .isTrue}
 		set{
-			_useMaterialColor = .isFalse
-			_useTexture = .isTrue
+			_options.x = .isFalse
+			_options.y = .isTrue
 		}
 	}
 }
