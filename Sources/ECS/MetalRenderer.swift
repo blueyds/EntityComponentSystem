@@ -31,7 +31,7 @@ extension MetalRenderer{
 	public var modelMatrixIndex: Int { 1 }
 	public var viewMatrixIndex: Int { 2 }
 	public var projectionMatrixIndex: Int { 3 }
-	
+	public var materialConstantsIndex: Int { 0 }
 	
 	public func makeLibrary()->MTLLibrary?{
 		device?.makeDefaultLibrary()
@@ -79,6 +79,11 @@ extension MetalRenderer{
 		rCE!.setVertexBytes(&vertices, length: Vertex.stride(of: vertices.count), index: vertexBufferIndex)
 	}
 	
+	public func setMaterial(constants: Material){
+		var material: Material = constants
+		rCE!.setFragmentBytes(&material, length: Material.stride(), index: materialConstantsIndex)
+	}
+	
 	public func drawPrimitives(count: Int) {
 		rCE!.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: count)
 	}
@@ -109,5 +114,6 @@ extension MetalRenderer{
 		depthStencilDescriptor.depthCompareFunction = compareFn
 		return device?.makeDepthStencilState(descriptor: depthStencilDescriptor)
 	}
-	public func setTexture(id: Int){}
+	
+	
 }

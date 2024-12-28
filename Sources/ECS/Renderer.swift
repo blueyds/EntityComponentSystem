@@ -7,7 +7,10 @@ public protocol Renderer: AnyObject{
 	func setView(matrix: Matrix)
 	func setProjection(matrix: Matrix)
 	func setVertex(_ : [Vertex])
-	func drawPrimitives(count: Int)
 	func setTexture(id: Int)
+	func setMaterial(constants: Material)
+	func drawPrimitives(count: Int)
+	
 }
+
 
