@@ -21,18 +21,7 @@ public struct Material{
 	public var useMaterialColor: Bool{
 		get { _useMaterialColor }
 	}
-	public var textureID: Int? {
-		get{	_textureID }
-		set{
-			_textureID = newValue
-			if newValue != nil{
-				_useMaterialColor = false
-				_useTexture = true
-			} else {
-				_useTexture = false
-			}
-		}
-	}
+	
 	public var useTexture: Bool {
 		get { _useTexture }
 		set{
