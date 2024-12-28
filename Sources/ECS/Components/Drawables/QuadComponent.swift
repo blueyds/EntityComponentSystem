@@ -7,12 +7,12 @@ public class CustomQuadComponent: CustomMeshComponent{
 	
 	public var entity: Entity? = nil
 
-	public let color: SIMD4<Float>
+	public var material: Material = Material()
 
 	public static var typeID: Int = Manager.getNewComponentTypeID()
 
 	public init(color: SIMD4<Float>){
-		self.color = color
+		material.color = color
 	}
 
 
@@ -21,12 +21,12 @@ public class CustomQuadComponent: CustomMeshComponent{
 
 extension CustomQuadComponent{
 	public func buildVertices(){
-		add(vertex: Vertex(x: -0.5, y:  0.5, u: 0, v: 0, color: color)) // TL
-		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: color)) // TR
-		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: color)) // BL
-		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: color)) // BL
-		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: color)) // TR
-		add(vertex: Vertex(x:  0.5, y: -0.5, u: 1, v: 1, color: color)) // BR
+		add(vertex: Vertex(x: -0.5, y:  0.5, u: 0, v: 0, color: .black)) // TL
+		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: .black)) // TR
+		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: .black)) // BL
+		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: .black)) // BL
+		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: .black)) // TR
+		add(vertex: Vertex(x:  0.5, y: -0.5, u: 1, v: 1, color: .black)) // BR
 	}
 
 }
