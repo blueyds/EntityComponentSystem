@@ -5,6 +5,7 @@ public struct Material{
 	private var _color: GameColor? = nil
 	private var _useMaterialColor: Bool = false
 	private var _useTexture: Bool = false
+	public init() {}
 	public var color: GameColor? {
 		get { _color }
 		set{
