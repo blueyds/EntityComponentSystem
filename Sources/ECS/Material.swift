@@ -2,8 +2,8 @@ import GameColor
 import Sizeable
 
 extension Int8{
-	static var true: Int8 { 1 }
-	static var false: Int8 { 0 }
+	static var isTrue: Int8 { 1 }
+	static var isFalse: Int8 { 0 }
 }
 
 public struct Material{
@@ -16,16 +16,16 @@ public struct Material{
 			
 			if newValue != nil{
 				_color = newValue
-				_useMaterialColor = .true
-				_useTexture = .false
+				_useMaterialColor = .isTrue
+				_useTexture = .isFalse
 			} else { 
-				_useMaterialColor = .false
+				_useMaterialColor = .isFalse
 			}
 		}
 	}
 	
 	public var useMaterialColor: Bool{
-		get { _useMaterialColor == .true}
+		get { _useMaterialColor == .isTrue}
 	}
 	private var _useMaterialColor: Int8{
 		_options.x
@@ -35,10 +35,10 @@ public struct Material{
 	}
 	
 	public var useTexture: Bool {
-		get { _useTexture == .true}
+		get { _useTexture == .isTrue}
 		set{
-			_useMaterialColor = .false
-			_useTexture = .true
+			_useMaterialColor = .isFalse
+			_useTexture = .isTrue
 		}
 	}
 }
