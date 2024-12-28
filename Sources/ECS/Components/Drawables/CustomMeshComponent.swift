@@ -27,7 +27,7 @@ extension CustomMeshComponent {
 		let transform: TransformComponent? = entity?.getComponent()
 		renderer.setModel(matrix: transform?.modelMatrix  ?? .identity)
 		renderer.setVertex(vertices)
-		renderer.setMaterial(constants: set)
+		renderer.setMaterial(constants: material)
 		renderer.drawPrimitives(count: vertices.count)
 		renderer.popDebug()
 	}
