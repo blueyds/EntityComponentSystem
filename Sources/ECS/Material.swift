@@ -1,6 +1,6 @@
 //import GameColor
 import Sizeable
-i,port simd
+import simd
 
 public struct Material{
 	private var _color: SIMD4<Float> = SIMD4(0,0,0,1)
