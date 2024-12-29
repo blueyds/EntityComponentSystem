@@ -88,20 +88,28 @@ extension MetalRenderer{
 		rCE!.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: count)
 	}
 
-	public func createRenderPipeline(vertexFn: String, fragmentFn: String)->MTLRenderPipelineState?{
+	public func createRenderPipeline(vertexFn: String, fragmentFn: String, useAlphaBlending: Bool = false)->MTLRenderPipelineState?{
 		var result: MTLRenderPipelineState? = nil
 		let library = makeLibrary()
 		let vertexFunction = library!.makeFunction(name: vertexFn)
 		let fragmentFunction = library!.makeFunction(name: fragmentFn)
-		let renderPipelineDescriptore = MTLRenderPipelineDescriptor()
-		renderPipelineDescriptore.colorAttachments[0].pixelFormat = pixelFormat
-		if depthPixelFormat != nil{
-			renderPipelineDescriptore.depthAttachmentPixelFormat = depthPixelFormat!
+		let rPD = MTLRenderPipelineDescriptor()
+		rPD.colorAttachments[0].pixelFormat = pixelFormat
+		if useAlphaBlending{
+			rPD.colorAttachments[0].isBlendingEnabled = true
+			rPD.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+			rPD.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+			rPD.colorAttachments[0].sourceAlphaBlendFactor = .sourceAlpha
+			rPD.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
 		}
-		renderPipelineDescriptore.vertexFunction = vertexFunction
-		renderPipelineDescriptore.fragmentFunction = fragmentFunction
+		
+		if depthPixelFormat != nil{
+			rPD.depthAttachmentPixelFormat = depthPixelFormat!
+		}
+		rPD.vertexFunction = vertexFunction
+		rPD.fragmentFunction = fragmentFunction
 		do{
-			result = try device?.makeRenderPipelineState(descriptor: renderPipelineDescriptore)
+			result = try device?.makeRenderPipelineState(descriptor: rPD)
 		} catch let error as NSError{
 			print(error)
 		}
