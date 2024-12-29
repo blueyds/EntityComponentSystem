@@ -1,12 +1,13 @@
-import GameColor
+//import GameColor
 import Sizeable
+i,port simd
 
 public struct Material{
-	private var _color: GameColor = .black
+	private var _color: SIMD4<Float> = SIMD4(0,0,0,1)
 	private var _useMaterialColor: Bool = false
 	private var _useTexture: Bool = false
 	public init() {}
-	public var color: GameColor? {
+	public var color: SIMD4<Float>? {
 		get { _color }
 		set{
 			
