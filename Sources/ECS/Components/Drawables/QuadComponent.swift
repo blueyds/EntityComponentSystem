@@ -21,12 +21,12 @@ public class CustomQuadComponent: CustomMeshComponent{
 
 extension CustomQuadComponent{
 	public func buildVertices(){
-		add(vertex: Vertex(x: -0.5, y:  0.5, u: 0, v: 0, color: .black)) // TL
-		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: .black)) // TR
-		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: .black)) // BL
-		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: .black)) // BL
-		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: .black)) // TR
-		add(vertex: Vertex(x:  0.5, y: -0.5, u: 1, v: 1, color: .black)) // BR
+		add(vertex: Vertex(x: -0.5, y:  0.5, u: 0, v: 0, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // TL
+		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // TR
+		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // BL
+		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0, v: 1, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // BL
+		add(vertex: Vertex(x:  0.5, y:  0.5, u: 1, v: 0, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // TR
+		add(vertex: Vertex(x:  0.5, y: -0.5, u: 1, v: 1, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // BR
 	}
 
 }

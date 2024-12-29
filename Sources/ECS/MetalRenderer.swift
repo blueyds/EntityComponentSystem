@@ -115,7 +115,14 @@ extension MetalRenderer{
 		return device?.makeDepthStencilState(descriptor: depthStencilDescriptor)
 	}
 	
-	
+	public func createSamplerState(minFilter: MTLSamplerMinMagFilter, magFilter: MTLSamplerMinMagFilter, mipFilter: MTLSamplerMipFilter)->MTLSamplerState?{
+		var description: MTLSamplerDescriptor = MTLSamplerDescriptor()
+		description.minFilter = minFilter
+		description.magFilter = magFilter
+		description.mipFilter = mipFilter
+		var samplerState = device?.makeSamplerState(descriptor: description)
+		return samplerState
+	}
 }
 
 extension MetalRenderer{

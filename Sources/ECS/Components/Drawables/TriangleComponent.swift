@@ -25,8 +25,8 @@ public class CustomTriangleComponent: CustomMeshComponent {
 
 extension CustomTriangleComponent{
 	public func buildVertices(){
-		add(vertex: Vertex(x:  0.0, y:  0.5, u: 0.5, v: 0, color: .black)) // TOP
-		add(vertex: Vertex(x:  0.5, y: -0.5, u: 1.0, v: 1, color: .black)) // BR
-		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0.0, v: 1, color: .black)) // BL
+		add(vertex: Vertex(x:  0.0, y:  0.5, u: 0.5, v: 0, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // TOP
+		add(vertex: Vertex(x:  0.5, y: -0.5, u: 1.0, v: 1, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // BR
+		add(vertex: Vertex(x: -0.5, y: -0.5, u: 0.0, v: 1, color: SIMD4(0.0, 0.0, 0.0, 1.0))) // BL
 	}
 }

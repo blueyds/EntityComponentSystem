@@ -10,7 +10,7 @@ public class Manager{
 	}
 	
 	private var entities: [Entity] = []
-	
+
 	public func update(){
 		entities.forEach(){ $0.update()}
 	}
