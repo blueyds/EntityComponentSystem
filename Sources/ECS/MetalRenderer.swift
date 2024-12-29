@@ -15,7 +15,8 @@ public protocol MetalRenderer:Renderer{
 	var depthPixelFormat: MTLPixelFormat? { get } // required
 	var rCE: MTLRenderCommandEncoder? { get set } // required
 	var defaultRenderPipeline: MTLRenderPipelineState? { get } // required
-	var defaultDepthStencilState: MTLDepthStencilState? { get } // required 
+	var defaultDepthStencilState: MTLDepthStencilState? { get } // required
+	var defaultSamplerState: MTLSamplerState? { get } // required
 	var vertexBufferIndex: Int { get } // default implement = 0
 	var modelMatrixIndex: Int { get } // default implemenkkt = 1
 	var viewMatrixIndex: Int { get } // default implement = 2
@@ -32,7 +33,8 @@ extension MetalRenderer{
 	public var viewMatrixIndex: Int { 2 }
 	public var projectionMatrixIndex: Int { 3 }
 	public var materialConstantsIndex: Int { 0 }
-	
+	public var samplerStateIndex: Int { 0 }
+
 	public func makeLibrary()->MTLLibrary?{
 		device?.makeDefaultLibrary()
 	}
@@ -44,6 +46,9 @@ extension MetalRenderer{
 	}
 		if defaultDepthStencilState != nil{
 			rCE?.setDepthStencilState(defaultDepthStencilState!)
+		}
+		if defaultSamplerState != nil {
+			rCE?.setFragmentSamplerState(defaultSamplerState!, index: samplerStateIndex)
 		}
 	}
 }
@@ -124,11 +129,11 @@ extension MetalRenderer{
 	}
 	
 	public func createSamplerState(minFilter: MTLSamplerMinMagFilter, magFilter: MTLSamplerMinMagFilter, mipFilter: MTLSamplerMipFilter)->MTLSamplerState?{
-		var description: MTLSamplerDescriptor = MTLSamplerDescriptor()
+		let description: MTLSamplerDescriptor = MTLSamplerDescriptor()
 		description.minFilter = minFilter
 		description.magFilter = magFilter
 		description.mipFilter = mipFilter
-		var samplerState = device?.makeSamplerState(descriptor: description)
+		let samplerState = device?.makeSamplerState(descriptor: description)
 		return samplerState
 	}
 }

@@ -2,17 +2,15 @@ import Foundation
 public class Entity:Identifiable{
 	private static var lastID: Int = 0
 	private var components: [Int: any Component] = [:]
-	internal let manager: Manager
 	public var  isActive: Bool = true
-	public init(manager: Manager){
-		self.manager = manager
-	}
 	public var id:Int  = {
 		Entity.lastID += 1
 		return Entity.lastID
 	}()
-	
-	public func update(){ 
+
+	public init(){}
+
+	public func update(){
 		components.forEach{ _, component in 
 			component.update()
 		}
