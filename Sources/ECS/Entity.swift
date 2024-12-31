@@ -3,12 +3,12 @@ public class Entity:Identifiable{
 	private static var lastID: Int = 0
 	private var components: [Int: any Component] = [:]
 	public var  isActive: Bool = true
-	public var id:Int  = {
-		Entity.lastID += 1
-		return Entity.lastID
-	}()
+	public let id: Int
 
-	public init(){}
+	public init(){
+		Entity.lastID += 1
+		id = Entity.lastID
+	}
 
 	public func update(){
 		components.forEach{ _, component in 
@@ -50,4 +50,13 @@ public class Entity:Identifiable{
         let result = action(c)
         components.updateValue(result, forKey: T.typeID)
     }
+
+	public func deactivate(){
+		isActive = false
+	}
+	public func destroy(){
+		components.forEach(){component in
+			component.value.destroy()
+		}
+	}
 }
