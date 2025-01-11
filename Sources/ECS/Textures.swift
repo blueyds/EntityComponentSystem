@@ -48,7 +48,10 @@ public struct Textures{
 	public mutating func  loadSpriteSheet<R:MetalRenderer>(named: String, rows: Int, columns: Int, renderer: R)->[RC:Int]{
 		var result: [RC:Int] = [:]
 		let loader = MTKTextureLoader(device: renderer.device!)
-		guard let url: URL =  getUrl(named) else { return result }
+		guard let url: URL =  getUrl(named) else { 
+			print("Sheet \(named) could not be found")
+			return result 
+		}
 		guard let texture = loadTexture(at: url, loader: loader) else { return result }
 		guard let cimage = CIImage(mtlTexture: texture) else { return result }
 		let extant = cimage.extent
