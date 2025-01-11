@@ -25,3 +25,8 @@ public class TileSheet{
 		textureByTileID[tileID] ?? 0
 	}
 }
+extension TileSheet:CustomStringConvertible{
+	public var description: String {
+		"\(textureByRC)"
+	}
+}
