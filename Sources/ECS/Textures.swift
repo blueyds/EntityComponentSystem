@@ -45,19 +45,19 @@ public struct Textures{
 		return nil
 	}
 	
-	public mutating func  loadSpriteSheet<R:MetalRenderer>(named: String, tiles: SIMD2<Int>, renderer: R)->[SIMD2<Int>:Int]{
-		var result: [SIMD2<Int>:Int] = [:]
+	public mutating func  loadSpriteSheet<R:MetalRenderer>(named: String, rows: Int, columns: Int, renderer: R)->[RC:Int]{
+		var result: [RC:Int] = [:]
 		let loader = MTKTextureLoader(device: renderer.device!)
 		guard let url: URL =  getUrl(named) else { return result }
 		guard let texture = loadTexture(at: url, loader: loader) else { return result }
 		guard let cimage = CIImage(mtlTexture: texture) else { return result }
 		let extant = cimage.extent
-		let tileWidth: CGFloat = extant.width / CGFloat(tiles.x)
-		let tileHeight: CGFloat = extant.height / CGFloat(tiles.y)
+		let tileWidth: CGFloat = extant.width / CGFloat(columns)
+		let tileHeight: CGFloat = extant.height / CGFloat(rows)
 		let context = CIContext(mtlDevice: renderer.device!)
 
-		for row: Int in 0..<tiles.y{
-			for col: Int in 0..<tiles.x{
+		for row: Int in 0..<rows{
+			for col: Int in 0..<columns{
 				let tileRect = CGRect(
 					x: CGFloat(col) * tileWidth,
 					y: CGFloat(row) * tileHeight,
@@ -66,7 +66,7 @@ public struct Textures{
 				if let tile = cropTexture(image: cimage, cropRect: tileRect, context: context, loader: loader){
 					let textureData = TextureData(texture: tile, name: named + "_\(row),\(col)")
 					textures.updateValue(textureData, forKey: textureData.id)
-					result.updateValue(textureData.id, forKey: SIMD2(col, row))
+					result.updateValue(textureData.id, forKey: RC(row: row, column: col))
 				}
 			}
 		}

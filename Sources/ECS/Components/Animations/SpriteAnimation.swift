@@ -19,7 +19,7 @@ public class SpriteAnimation: AnimationOverTime{
 
 	public static var typeID: Int = Manager.getNewComponentTypeID()
 
-	private var animations: [SIMD2<Int>] = []
+	private var animations: [RC] = []
 
 	public init(row: Int, tiles: Int, duration: Duration){
 		self.duration = duration
@@ -28,13 +28,13 @@ public class SpriteAnimation: AnimationOverTime{
 
 	public func animate(progress: Float) {
 			let slide = Int((Float(animations.count) * progress).rounded(.down))
-			entity?.getComponent(ofType: SpriteComponent.self)?.changeTexture(loc:  animations[slide])
+		entity?.getComponent(ofType: SpriteComponent.self)?.changeTexture(rcRef:  animations[slide])
 	}
 
 
 	private func addAnimations(row: Int, tiles: Int){
 		for tile in 0..<tiles{
-			animations.append(SIMD2(tile, row))
+			animations.append(RC(row: row, column: 	tile))
 		}
 
 	}
