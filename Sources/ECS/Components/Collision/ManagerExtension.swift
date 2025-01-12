@@ -12,7 +12,7 @@ extension Manager{
 	public typealias CollisionTuple = (A:CollisionComponent,B:CollisionComponent)
 	
 	private func findCollisions(for entity: Entity, using tester: collisionTestEnum )->[CollisionTuple]{
-		var result: [(CollisionTuple] = []
+		var result: [CollisionTuple] = []
 		var testFn: = tester.function
 		guard let colA = entity.getComponent(ofType: CollisionComponent.self) else { return result }
 		self.forEachEntity( ){
@@ -26,7 +26,7 @@ extension Manager{
 	}
 	
 	public func testCollisions(using test: collisionTestEnum)->[CollisionTuple]{
-		var collisions: [(CollisionTuple] = []
+		var collisions: [CollisionTuple] = []
 		collisionTestEntities.forEach(){
 			let newCollisions = findCollisions(for: $0, using: test)
 			collisions.append(contentsOf: newCollisions)
