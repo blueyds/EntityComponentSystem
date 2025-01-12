@@ -11,7 +11,7 @@ extension Manager{
 		if colA.entity?.id == entityB.id { return result } 
 		var hit: Bool
 		switch test{
-			case AABB:
+			case .AABB:
 				hit = Collision.AABB(test: colA, against: colB)
 		}
 		if hit{
@@ -22,11 +22,11 @@ extension Manager{
 	}
 	private func findCollisions(for entity: Entity, using tester: collisionTestEnum )->[CollisionTuple]{
 		var result: [CollisionTuple] = []
-		var testFn = tester.function
+		
 		guard let colA = entity.getComponent(ofType: CollisionComponent.self) else { return result }
 		self.forEachEntity( ){
 			let collisions = testCollision(colA: colA, entityB: $0, test: tester)
-			result.append(collisions)
+			result.append(contentsOf: collisions)
 		}
 		return result
 	}
