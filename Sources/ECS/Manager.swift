@@ -76,17 +76,4 @@ public class Manager{
 	public func forEachEntity(closure: (Entity)->()){
 		entities.forEach(){ closure($0.value)}
 	}
-	
-	public func testAllCollisions(action: (CollisionComponent, CollisionComponent)->Void){
-		collisionTestEntities.forEach(){
-		if let colA = $0.getComponent(ofType: CollisionComponent.self){
-			let collisions = manager.findCollisions(for: $0, using: Collision.AABB(test:against:))
-			collisions.forEach(){ colB in
-				if colA.entity!.id != colB.entity!.id{
-					print("Collision \(colA.tag) and \(colB.tag)")
-					action(colA, colB)
-				}
-			}
-		}
-	}
 }
