@@ -12,6 +12,8 @@ public class Manager{
 	private var entities: [Int:Entity] = [:]
 	private var groups: [Int:[Int]] = [:]
 	private var maxGroupID: Int = 0
+	private var collisionTestEntities: [Entity] = []
+	
 	public func update(){
 		forEachEntityByGroup(){ $0.update()}
 	}
@@ -23,6 +25,7 @@ public class Manager{
 	public func refresh(){
 		let inactive = entities.filter({$0.value.isActive == false})
 		inactive.forEach(){ remove(entity: $0.value)}
+		collisionTestEntities.removeAll(where: {$0.isActive == false})
 	}
 	
 	public func remove(entity: Entity){
@@ -55,6 +58,9 @@ public class Manager{
 		maxGroupID = max(maxGroupID, groupID)
 		return e
 	}
+	public func addToCollisionTests(entity: Entity){
+		collisionTestEntities.append(entity)
+	}
 	public func forEachEntityByGroup(closure: (Entity)->()){
 		for id in 0...maxGroupID{
 			forEachEntityIn(group: id, closure: closure)
@@ -69,5 +75,18 @@ public class Manager{
 	}
 	public func forEachEntity(closure: (Entity)->()){
 		entities.forEach(){ closure($0.value)}
+	}
+	
+	public func testAllCollisions(action: (CollisionComponent, CollisionComponent)->Void){
+		collisionTestEntities.forEach(){
+		if let colA = $0.getComponent(ofType: CollisionComponent.self){
+			let collisions = manager.findCollisions(for: $0, using: Collision.AABB(test:against:))
+			collisions.forEach(){ colB in
+				if colA.entity!.id != colB.entity!.id{
+					print("Collision \(colA.tag) and \(colB.tag)")
+					action(colA, colB)
+				}
+			}
+		}
 	}
 }
