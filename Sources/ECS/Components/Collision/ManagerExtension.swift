@@ -1,5 +1,5 @@
 extension Manager{
-	public typealias CollisionTestFn = CollisionTuple->Bool
+	public typealias CollisionTestFn = (CollisionTuple)->Bool
 	public enum collisionTestEnum{
 		case AABB
 		public var function: CollisionTestFn{
