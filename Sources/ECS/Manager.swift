@@ -12,7 +12,7 @@ public class Manager{
 	private var entities: [Int:Entity] = [:]
 	private var groups: [Int:[Int]] = [:]
 	private var maxGroupID: Int = 0
-	private var collisionTestEntities: [Entity] = []
+	internal var collisionTestEntities: [Entity] = []
 	
 	public func update(){
 		forEachEntityByGroup(){ $0.update()}

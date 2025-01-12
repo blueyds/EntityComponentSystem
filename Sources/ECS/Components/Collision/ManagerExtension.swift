@@ -2,20 +2,13 @@ extension Manager{
 	public typealias CollisionTestFn = (CollisionTuple)->Bool
 	public enum collisionTestEnum{
 		case AABB
-		
-		public var function: CollisionTestFn{
-			switch self{
-			case AABB: 
-				Collision.AABB(test:against:)
-			}
-		}
 	}
 	public typealias CollisionTuple = (A:CollisionComponent,B:CollisionComponent)
 	
 	private func testCollision(colA: CollisionComponent, entityB: Entity, test: collisionTestEnum)->[CollisionTuple]{
 		var result: [CollisionTuple] = []
 		guard let colB = entityB.getComponent(ofType: CollisionComponent.self) else { return result}
-		guard let _ = colA.entity?.id == entityB.id else { return result } 
+		if colA.entity?.id == entityB.id { return result } 
 		var hit: Bool
 		switch test{
 			case AABB:
@@ -33,7 +26,7 @@ extension Manager{
 		guard let colA = entity.getComponent(ofType: CollisionComponent.self) else { return result }
 		self.forEachEntity( ){
 			let collisions = testCollision(colA: colA, entityB: $0, test: tester)
-			result.append(collision)
+			result.append(collisions)
 		}
 		return result
 	}
