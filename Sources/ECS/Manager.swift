@@ -13,7 +13,7 @@ public class Manager{
     fileprivate var entities: [Int:any Entity] = [:]
     fileprivate var groups: [Int:[Int]] = [:]
     fileprivate var maxGroupID: Int = 0
-    fileprivate var collisionTestEntities: [any Entity] = []
+    internal var collisionTestEntities: [any Entity] = []
     
     public func update(){
         forEachEntityByGroup(){ $0.update()}

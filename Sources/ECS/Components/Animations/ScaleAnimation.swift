@@ -4,7 +4,7 @@ import simd
 
 
 public class ScaleAnimation:AnimationOverTime{
-    public var entity: Entity!
+    public var entity: (any Entity)!
     public static var typeID: Int = Manager.getNewComponentTypeID()
     
    // private var repeatTimes: Float

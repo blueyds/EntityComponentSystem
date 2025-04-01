@@ -48,7 +48,7 @@ extension SpriteComponent{
         guard let transform: TransformComponent = getComponentIn(entity: entity) else { return }
 
         renderer.pushDebug("TypeID \(Self.typeID)")
-        renderer.setModel(matrix: transform?.modelMatrix)
+        renderer.setModel(matrix: transform.modelMatrix)
         renderer.setVertex(vertices)
         renderer.setMaterial(constants: material)
         

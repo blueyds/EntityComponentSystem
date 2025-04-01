@@ -3,7 +3,7 @@ import Foundation
 public class FollowerComponent: Component{
     public var entity: (any Entity)!
     public static var typeID: Int = Manager.getNewComponentTypeID()
-    private weak var follow: any Entity
+    private var follow: any Entity
     private let ignoreZ: Bool
     public init(follow: any Entity, ignoreZ: Bool = false){
         self.follow = follow

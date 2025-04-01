@@ -5,7 +5,7 @@ extension Manager{
 	}
 	public typealias CollisionTuple = (A:CollisionComponent,B:CollisionComponent)
 	
-	private func testCollision(colA: CollisionComponent, entityB: Entity, test: collisionTestEnum)->[CollisionTuple]{
+	private func testCollision(colA: CollisionComponent, entityB: any Entity, test: collisionTestEnum)->[CollisionTuple]{
 		var result: [CollisionTuple] = []
 		guard let colB: CollisionComponent = getComponentIn(entity: entityB) else { return result}
 		if colA.entity.id == entityB.id { return result } 
