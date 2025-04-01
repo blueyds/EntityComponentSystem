@@ -15,16 +15,19 @@ public class ScaleAnimation:AnimationOverTime{
         self.duration = duration        
     }
     public func setup() {
-        restoreScale =  entity?.getComponent(ofType: TransformComponent.self)?.scale ?? .one
+        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return} 
+        restoreScale =  transform.scale
     }
     public func animate(progress: Float) {
+        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return}
         var y = progress
         if y > 0.50 { y = 0.5 - (y  - 0.5)}
-        entity?.getComponent(ofType: TransformComponent.self)?.scale = SIMD3(1, 1 - y, 1)
+        transform.scale = SIMD3(1, 1 - y, 1)
     }
     
     public func destroy() {
-        entity?.getComponent(ofType: TransformComponent.self)?.scale = restoreScale
+        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return}
+        transform.scale = restoreScale
     }
     
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 public class FollowerComponent: Component{
-    public var entity: Entity? = nil
+    public var entity: (any Entity)? = nil
     public static var typeID: Int = Manager.getNewComponentTypeID()
     private var follow: Entity
     private let ignoreZ: Bool
@@ -11,9 +11,9 @@ public class FollowerComponent: Component{
     }
     
     public func update() {
-        guard let followTransforms = follow.getComponent(ofType: TransformComponent.self) 
+        guard let followTransforms:TransformComponent = getComponentIn(entity: follow) 
             else { return}
-        guard let myTransfroms = entity?.getComponent(ofType: TransformComponent.self)
+        guard let myTransfroms: TransformComponent = getComponentIn(entity: entity)
             else { return }
         var pos: SIMD3<Float> = followTransforms.position
         if ignoreZ{

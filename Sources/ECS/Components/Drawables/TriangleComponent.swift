@@ -12,7 +12,7 @@ public class CustomTriangleComponent: CustomMeshComponent {
 	public var vertices: [Vertex] = []
 
 	public var material: Material = Material()
-	public var entity: Entity? = nil
+	public var entity: (any Entity)? = nil
 
 	public static var typeID: Int = Manager.getNewComponentTypeID()
 

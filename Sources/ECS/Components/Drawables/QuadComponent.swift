@@ -5,7 +5,7 @@ import simd
 public class CustomQuadComponent: CustomMeshComponent{
 	public var vertices: [Vertex] = []
 	
-	public var entity: Entity? = nil
+	public var entity: (any Entity)? = nil
 
 	public var material: Material = Material()
 

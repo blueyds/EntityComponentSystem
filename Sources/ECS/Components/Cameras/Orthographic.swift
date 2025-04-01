@@ -13,22 +13,22 @@ extension Matrix{
 }
 extension Camera{
     public class Orthographic: Camera.CameraProtocol{
-        public var entity: Entity? = nil
+        public var entity: (any Entity)? = nil
         public static let typeID: Int = Manager.getNewComponentTypeID()
         private let left: Float
-	private let right: Float
-	private let bottom: Float
-	private let top: Float
-	private let near: Float
-	private let far: Float
-	public init(left: Float, right: Float, bottom: Float, top: Float, near: Float, far: Float){
-		self.left = left
-		self.right = right
-		self.bottom = bottom
-		self.top = top
-		self.near = near
-		self.far = far
-	}
+		private let right: Float
+		private let bottom: Float
+		private let top: Float
+		private let near: Float
+		private let far: Float
+		public init(left: Float, right: Float, bottom: Float, top: Float, near: Float, far: Float){
+			self.left = left
+			self.right = right
+			self.bottom = bottom
+			self.top = top
+			self.near = near
+			self.far = far
+		}
         public var projectionMatrix: Matrix{
             .orthographic(
                 left: left, 

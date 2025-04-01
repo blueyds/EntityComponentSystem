@@ -1,7 +1,7 @@
 import Foundation
 
 public class RotationAnimation: AnimationOverTime{
-    public var entity: Entity? = nil
+    public var entity: (any Entity)? = nil
     public static let typeID: Int = Manager.getNewComponentTypeID()
     public let duration: Duration
     private let direction: Float
@@ -15,13 +15,16 @@ public class RotationAnimation: AnimationOverTime{
         restoredRotate = entity?.getComponent(ofType: TransformComponent.self)?.rotation ?? .zero
     }
     public func animate(progress: Float) {
+        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return}
         var y = progress * 2 
         if y > 1 { y = 1 - (y - 1)}
-        entity?.getComponent(ofType: TransformComponent.self)?.rotation = SIMD3(0, 0, y * direction)
+        
+        transform.rotation = SIMD3(0, 0, y * direction)
     }
     
     public func destroy() {
-        entity?.getComponent(ofType: TransformComponent.self)?.rotation = restoredRotate
+        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return}
+        transform.rotation = restoredRotate
     }
     
 }

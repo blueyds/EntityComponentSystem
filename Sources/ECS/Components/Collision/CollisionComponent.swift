@@ -1,5 +1,5 @@
 public class CollisionComponent: Component{
-    public var entity: Entity? = nil
+    public var entity: (any Entity)? = nil
     public var col: CollisionRect = CollisionRect()
     public let tag: String
     public var offset: SIMD2<Float>
@@ -13,7 +13,7 @@ public class CollisionComponent: Component{
     }
 
     public func update() {
-        if let transform: TransformComponent = entity?.getComponent(){
+        if let transform: TransformComponent = getComponentIn(entity: entity){
             col.x = transform.position.x + offset.x
             col.y = transform.position.y  + offset.y
         }

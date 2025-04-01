@@ -15,7 +15,7 @@ public class SpriteAnimation: AnimationOverTime{
 
 
 
-	public var entity: ECS.Entity? = nil
+	public var entity: (any Entity)? = nil
 
 	public static var typeID: Int = Manager.getNewComponentTypeID()
 
@@ -27,8 +27,9 @@ public class SpriteAnimation: AnimationOverTime{
 	}
 
 	public func animate(progress: Float) {
-			let slide = Int((Float(animations.count) * progress).rounded(.down))
-		entity?.getComponent(ofType: SpriteComponent.self)?.changeTexture(rcRef:  animations[slide])
+		guard let sprite: SpriteComponent = getComponentIn(entity: entity) else {return}
+		let slide = Int((Float(animations.count) * progress).rounded(.down))
+		sprite.changeTexture(rcRef:  animations[slide])
 	}
 
 

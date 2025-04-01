@@ -2,7 +2,7 @@ import Foundation
 
 
 public class TempComponent: AnimationOverTime{
-    public var entity: Entity? = nil
+    public var entity: (any Entity)? = nil
     public static let typeID: Int = Manager.getNewComponentTypeID()
     
     public var duration: Duration

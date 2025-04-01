@@ -3,7 +3,7 @@ import simd
 public class SpriteComponent: CustomMeshComponent{
     public var vertices: [Vertex] = []
     
-    public var entity: Entity? = nil
+    public var entity: (any Entity)? = nil
         
     public static var typeID: Int = Manager.getNewComponentTypeID()
 
@@ -45,9 +45,10 @@ extension SpriteComponent{
         add(vertex: Vertex(x:  0.5, y: -0.5, u: 1, v: 1, color: SIMD4(0, 0, 0, 1))) // BR
     }
     public func draw(renderer: any Renderer) {
+        guard let transform: TransformComponent = getComponentIn(entity: entity) else { return }
+
         renderer.pushDebug("TypeID \(Self.typeID)")
-        let transform: TransformComponent? = entity?.getComponent()
-        renderer.setModel(matrix: transform?.modelMatrix  ?? .identity)
+        renderer.setModel(matrix: transform?.modelMatrix)
         renderer.setVertex(vertices)
         renderer.setMaterial(constants: material)
         
