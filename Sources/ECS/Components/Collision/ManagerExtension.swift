@@ -7,8 +7,8 @@ extension Manager{
 	
 	private func testCollision(colA: CollisionComponent, entityB: Entity, test: collisionTestEnum)->[CollisionTuple]{
 		var result: [CollisionTuple] = []
-		guard let colB = entityB.getComponent(ofType: CollisionComponent.self) else { return result}
-		if colA.entity?.id == entityB.id { return result } 
+		guard let colB: CollisionComponent = getComponentIn(entity: entityB) else { return result}
+		if colA.entity.id == entityB.id { return result } 
 		var hit: Bool
 		switch test{
 			case .AABB:
@@ -22,8 +22,7 @@ extension Manager{
 	}
 	private func findCollisions(for entity: Entity, using tester: collisionTestEnum )->[CollisionTuple]{
 		var result: [CollisionTuple] = []
-		
-		guard let colA = entity.getComponent(ofType: CollisionComponent.self) else { return result }
+		guard let colA: CollisionComponent = getComponentIn(entity: entityB) else { return result}
 		self.forEachEntity( ){
 			let collisions = testCollision(colA: colA, entityB: $0, test: tester)
 			result.append(contentsOf: collisions)

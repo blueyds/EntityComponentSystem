@@ -15,7 +15,7 @@ public class SpriteAnimation: AnimationOverTime{
 
 
 
-	public var entity: (any Entity)? = nil
+	public var entity: (any Entity)!
 
 	public static var typeID: Int = Manager.getNewComponentTypeID()
 

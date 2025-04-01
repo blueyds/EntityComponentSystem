@@ -13,7 +13,7 @@ extension Matrix{
 }
 extension Camera{
     public class Orthographic: Camera.CameraProtocol{
-        public var entity: (any Entity)? = nil
+        public var entity: (any Entity)!
         public static let typeID: Int = Manager.getNewComponentTypeID()
         private let left: Float
 		private let right: Float

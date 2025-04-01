@@ -1,7 +1,7 @@
 import SwiftMatrix
 import simd
 public class TransformComponent: Component{
-	public var entity: (any Entity)? = nil
+	public var entity: (any Entity)!
 	static public var typeID: Int = Manager.getNewComponentTypeID()
 	
 	public var position: SIMD3<Float> = .zero

@@ -1,5 +1,5 @@
 public class CollisionComponent: Component{
-    public var entity: (any Entity)? = nil
+    public var entity: (any Entity)!
     public var col: CollisionRect = CollisionRect()
     public let tag: String
     public var offset: SIMD2<Float>
