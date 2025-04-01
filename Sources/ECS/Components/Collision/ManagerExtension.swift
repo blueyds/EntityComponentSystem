@@ -20,9 +20,9 @@ extension Manager{
 		}
 		return result
 	}
-	private func findCollisions(for entity: Entity, using tester: collisionTestEnum )->[CollisionTuple]{
+	private func findCollisions(for entity: any Entity, using tester: collisionTestEnum )->[CollisionTuple]{
 		var result: [CollisionTuple] = []
-		guard let colA: CollisionComponent = getComponentIn(entity: entityB) else { return result}
+		guard let colA: CollisionComponent = getComponentIn(entity: entity) else { return result}
 		self.forEachEntity( ){
 			let collisions = testCollision(colA: colA, entityB: $0, test: tester)
 			result.append(contentsOf: collisions)
