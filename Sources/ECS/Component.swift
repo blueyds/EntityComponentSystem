@@ -1,5 +1,5 @@
 public protocol Component: AnyObject{
-	var entity: (any Entity)? { get set}
+	var entity: (any Entity)! { get set}
 	static var typeID: Int { get }
 	func setup()
 	func destroy()
