@@ -35,11 +35,10 @@ extension Entity{
     }
 }
 
-public func add<T: Component>(component:  T, toEntity entity: any Entity)-> T{
+public func add<T: Component>(component:  T, toEntity entity: any Entity){
     component.entity = entity
     component.setup()
     entity.components.updateValue(component, forKey: T.typeID)
-    return component
 }
     
 public func removeComponentFrom<T: Component>(entity: any Entity, ofType: T.Type){
