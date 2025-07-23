@@ -15,7 +15,7 @@ extension Manager{
 				hit = Collision.AABB(test: colA, against: colB)
 		}
 		if hit{
-			var collision: CollisionTuple = (A: colA, B: colB)
+			let collision: CollisionTuple = (A: colA, B: colB)
 			result.append(collision)
 		}
 		return result
