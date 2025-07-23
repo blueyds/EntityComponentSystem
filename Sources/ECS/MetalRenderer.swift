@@ -137,7 +137,7 @@ extension MetalRenderer{
 		return samplerState
 	}
 	
-	func setTexture(id: Int) {
+	public func setTexture(id: Int) {
 		if let texture = Textures.shared.getTexture(id: id){
         	    rCE?.setFragmentTexture(texture, index: 0)
         	}
