@@ -1,16 +1,16 @@
 import MetalKit
 
-class GameMetalRenderer:MetalRenderer{
+public class GameMetalRenderer:MetalRenderer{
     //static var shared: GameRenderer 
-    let device: (any MTLDevice)?
-    var rCE: (any MTLRenderCommandEncoder)? = nil
-    let pixelFormat: MTLPixelFormat
-    let depthPixelFormat: MTLPixelFormat?
-    var defaultDepthStencilState: (any MTLDepthStencilState)? = nil
-    var defaultRenderPipeline: (any MTLRenderPipelineState)? = nil
-    var defaultSamplerState: (any MTLSamplerState)? = nil
-    var shaderSrc: String?
-    init(pixelFormat: MTLPixelFormat = .bgra8Unorm, depthPixelFormat: MTLPixelFormat = .depth32Float,depthCompareFn: MTLCompareFunction = .less, vertexFn: String = "basic_vertex_shader" , fragmentFn: String = "basic_fragment_shader", shaderSrc: String? = nil){
+    public let device: (any MTLDevice)?
+    public var rCE: (any MTLRenderCommandEncoder)? = nil
+    public let pixelFormat: MTLPixelFormat
+    public let depthPixelFormat: MTLPixelFormat?
+    public var defaultDepthStencilState: (any MTLDepthStencilState)? = nil
+    public var defaultRenderPipeline: (any MTLRenderPipelineState)? = nil
+    public var defaultSamplerState: (any MTLSamplerState)? = nil
+    public var shaderSrc: String?
+    public init(pixelFormat: MTLPixelFormat = .bgra8Unorm, depthPixelFormat: MTLPixelFormat = .depth32Float,depthCompareFn: MTLCompareFunction = .less, vertexFn: String = "basic_vertex_shader" , fragmentFn: String = "basic_fragment_shader", shaderSrc: String? = nil){
         device = MTLCreateSystemDefaultDevice()
         self.pixelFormat = pixelFormat
         self.depthPixelFormat = depthPixelFormat
@@ -20,7 +20,7 @@ class GameMetalRenderer:MetalRenderer{
         self.shaderSrc = shaderSrc
     }
     
-    func makeLibrary() -> (any MTLLibrary)? {
+    public func makeLibrary() -> (any MTLLibrary)? {
         if shaderSrc != nil {
             return try? device?.makeLibrary(source: shaderSrc!, options: nil)
         } else {
