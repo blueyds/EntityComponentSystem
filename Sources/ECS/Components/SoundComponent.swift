@@ -1,4 +1,3 @@
-import ECS
 import AVFoundation
 
 public class SoundComponent: Component{

@@ -1,4 +1,3 @@
-import ECS
 import MetalKit
 
 class GameMetalRenderer:MetalRenderer{
