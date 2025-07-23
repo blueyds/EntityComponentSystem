@@ -80,7 +80,7 @@ public func getComponent<T:Component>(inEntity entity: any Entity)->T?{
 public func getComponent<T:Component>(ofType: T.Type, inEntity entity: any Entity)->T?{
     entity.components[T.typeID] as? T
 }
-public func forComponents<T:Component>(ofType: T.Type, inEntity entity, do action: (T)->T){
+public func forComponents<T:Component>(ofType: T.Type, inEntity entity: any Entity, do action: (T)->T){
     guard let c:T = getComponent(inEntity: entity) else {  return }
     let result = action(c)
     entity.components.updateValue(result, forKey: T.typeID)

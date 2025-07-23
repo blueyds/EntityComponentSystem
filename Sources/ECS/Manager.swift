@@ -58,7 +58,7 @@ public class Manager{
         maxGroupID = max(maxGroupID, groupID)
         let managerComponent = ManagerComponent(self)
         addComponent(managerComponent, toEntity: entity)
-        if doesEntity(entity, haveComponentOfType: ColisionComponent.self){
+        if doesEntity(entity, haveComponentOfType: CollisionComponent.self){
             addToCollisionTests(entity: entity)
         }
     }
