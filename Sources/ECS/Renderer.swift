@@ -10,6 +10,7 @@ public protocol Renderer: AnyObject{
 	func setTexture(id: Int)
 	func setMaterial(constants: Material)
 	func drawPrimitives(count: Int)
+	func setTexture(id: Int)
 	
 }
 

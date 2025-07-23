@@ -136,6 +136,12 @@ extension MetalRenderer{
 		let samplerState = device?.makeSamplerState(descriptor: description)
 		return samplerState
 	}
+	
+	func setTexture(id: Int) {
+		if let texture = Textures.shared.getTexture(id: id){
+        	    rCE?.setFragmentTexture(texture, index: 0)
+        	}
+    	}
 }
 
 extension MetalRenderer{
