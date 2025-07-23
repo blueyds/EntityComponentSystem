@@ -27,7 +27,7 @@ public class SpriteAnimation: AnimationOverTime{
 	}
 
 	public func animate(progress: Float) {
-		guard let sprite: SpriteComponent = getComponentIn(entity: entity) else {return}
+		guard let sprite: SpriteComponent = getComponent(inEntity: entity) else {return}
 		let slide = Int((Float(animations.count) * progress).rounded(.down))
 		sprite.changeTexture(rcRef:  animations[slide])
 	}

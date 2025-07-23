@@ -23,7 +23,7 @@ extension CustomMeshComponent {
 		material.color = color
 	}
 	public func draw(renderer: any Renderer){
-		guard let transform: TransformComponent = getComponentIn(entity: entity) else { return }
+		guard let transform: TransformComponent = getComponent(inEntity: entity) else { return }
 
 		renderer.pushDebug("TypeID \(Self.typeID)")
 		

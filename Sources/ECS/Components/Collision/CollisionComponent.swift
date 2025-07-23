@@ -13,7 +13,7 @@ public class CollisionComponent: Component{
     }
 
     public func update() {
-        if let transform: TransformComponent = getComponentIn(entity: entity){
+        if let transform: TransformComponent = getComponent(inEntity: entity){
             col.x = transform.position.x + offset.x
             col.y = transform.position.y  + offset.y
         }

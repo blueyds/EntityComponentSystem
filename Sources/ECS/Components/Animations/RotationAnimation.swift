@@ -12,11 +12,11 @@ public class RotationAnimation: AnimationOverTime{
         self.direction = direction
     }
     public func setup() {
-        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return}
+        guard let transform: TransformComponent = getComponent(inEntity: entity) else {return}
         restoredRotate = transform.rotation
     }
     public func animate(progress: Float) {
-        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return}
+        guard let transform: TransformComponent = getComponent(inEntity: entity) else {return}
         var y = progress * 2 
         if y > 1 { y = 1 - (y - 1)}
         
@@ -24,7 +24,7 @@ public class RotationAnimation: AnimationOverTime{
     }
     
     public func destroy() {
-        guard let transform: TransformComponent = getComponentIn(entity: entity) else {return}
+        guard let transform: TransformComponent = getComponent(inEntity: entity) else {return}
         transform.rotation = restoredRotate
     }
     

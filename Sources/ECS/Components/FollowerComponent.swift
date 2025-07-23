@@ -11,9 +11,9 @@ public class FollowerComponent: Component{
     }
     
     public func update() {
-        guard let followTransforms:TransformComponent = getComponentIn(entity: follow) 
+        guard let followTransforms:TransformComponent = getComponent(inEntity: follow) 
             else { return}
-        guard let myTransfroms: TransformComponent = getComponentIn(entity: entity)
+        guard let myTransfroms: TransformComponent = getComponent(inEntity: entity)
             else { return }
         var pos: SIMD3<Float> = followTransforms.position
         if ignoreZ{

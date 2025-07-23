@@ -18,7 +18,7 @@ public enum Camera{
 }
 extension Camera.CameraProtocol{
 	public var viewMatrix: Matrix {
-		guard let transform: TransformComponent = getComponentIn(entity: entity) else { return .identity}
+		guard let transform: TransformComponent = getComponent(inEntity: entity) else { return .identity}
 		return transform.viewMatrix
 	}
 	public var projectionMatrix: Matrix { .identity }

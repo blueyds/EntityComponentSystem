@@ -56,7 +56,9 @@ public class Manager{
             groups.updateValue([entity.id], forKey: groupID)
         }
         maxGroupID = max(maxGroupID, groupID)
-        if let collision: CollisionComponent = getComponentIn(entity: entity){
+        let managerComponent = ManagerComponent(self)
+        addComponent(managerComponent, toEntity: entity)
+        if let collision: CollisionComponent = getComponent(inEntity: entity){
             addToCollisionTests(entity: entity)
         }
     }

@@ -9,13 +9,11 @@ public protocol Entity:AnyObject, Identifiable{
 }
 extension Entity{
     public func update(){
-        updateAllComponents()
-    }
-    public func updateAllComponents(){
         components.forEach{ _, component in 
-            component.update()
+            component.update( )
         }
     }
+
     public func draw(renderer: any Renderer){
         drawAllComponents(renderer: renderer)
     }
@@ -35,33 +33,57 @@ extension Entity{
     }
 }
 
+
+public class BasicEntity: Entity, Identifiable{
+    public var components: [Int: any Component] = [:]
+    public var isActive: Bool = true
+    public var id: Int = .NextId()
+    public init(){} 
+}
+
+public func addComponent<T: Component>(_ component:  T, toEntity entity: any Entity){
+    component.entity = entity
+    component.setup()
+    entity.components.updateValue(component, forKey: T.typeID)
+}
+/*
 public func add<T: Component>(component:  T, toEntity entity: any Entity){
     component.entity = entity
     component.setup()
     entity.components.updateValue(component, forKey: T.typeID)
 }
-    
-public func removeComponentFrom<T: Component>(entity: any Entity, ofType: T.Type){
-    if let component:T = getComponentIn(entity: entity){
+*/  
+public func removeComponent<T: Component>(ofType: T.Type, fromEntity: any Entity){
+    if let component:T = getComponent(inEntity: entity){
         component.destroy()
         entity.components.removeValue(forKey: T.typeID)
     }
 }
+/*
+public func removeComponentFrom<T: Component>(entity: any Entity, ofType: T.Type){
+    if let component:T = getComponent(inEntity: entity){
+        component.destroy()
+        entity.components.removeValue(forKey: T.typeID)
+    }
+}
+*/
     
-public func does<T: Component>(entity: any Entity, haveComponentOfType: T.Type) -> Bool{
+public func doesEntity<T: Component>(_ entity: any Entity, haveComponentOfType: T.Type) -> Bool{
     if entity.components[T.typeID] != nil { return true}
     else {return false}
 }
     
-public func getComponentIn<T:Component>(entity: any Entity)->T?{
+public func getComponent<T:Component>(inEntity: any Entity)->T?{
     entity.components[T.typeID] as? T
 }
-public func getComponentIn<T:Component>(entity: any Entity, ofType: T.Type)->T?{
+public func getComponent<T:Component>(inEntity: any Entity, ofType: T.Type)->T?{
     entity.components[T.typeID] as? T
 }
-
+public func getComponent<T:Component>(ofType: T.Type, inEntity: any Entity)->T?{
+    entity.components[T.typeID] as? T
+}
 public func forComponentsIn<T:Component>(entity: any Entity, ofType: T.Type, do action: (T)->T){
-    guard let c:T = getComponentIn(entity: entity) else {  return }
+    guard let c:T = getComponent(inEntity: entity) else {  return }
     let result = action(c)
     entity.components.updateValue(result, forKey: T.typeID)
-    }
+}

@@ -15,7 +15,7 @@ extension AnimationOverTime{
             animate(progress: y)
         }
         else {
-            removeComponentFrom(entity: entity, ofType: Self.self)
+            removeComponent(ofType: Self.self, fromEntity: entity)
         }
     }
 }
